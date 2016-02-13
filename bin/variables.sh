@@ -53,6 +53,11 @@ else
   config_lib_dir="--prefix=${depends_dir}/${host}"
 fi
 
+git_repository=$BITCOIN_REPOSITORY
+if [ -z "$git_repository" ]; then
+  git_repository=https://github.com/bitcoin/bitcoin.git
+fi
+
 if test x"$1" = x'anl'; then
   if [ "${platform}" != "darwin" ]; then
     echo -n "-lanl"
@@ -150,4 +155,8 @@ fi
 
 if test -z "$1" -o x"$1" = x'config_lib_dir'; then
   echo -n "${config_lib_dir}"
+fi
+
+if test -z "$1" -o x"$1" = x'git_repository'; then
+  echo -n "${git_repository}"
 fi
